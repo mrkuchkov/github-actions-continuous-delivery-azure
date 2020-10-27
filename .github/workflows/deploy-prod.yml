@@ -63,12 +63,13 @@ jobs:
 
       - uses: azure/docker-login@v1
         with:
-          login-serve: ${{env.IMAGE_REGISTRY_URL}}
+          login-server: ${{env.IMAGE_REGISTRY_URL}}
           username: ${{ github.actor }}
           password: ${{ secrets.K_GITHUB_TOKEN }}
 
       - run: |
             echo ${{env.IMAGE_REGISTRY_URL}}/${{ github.repository }}/${{env.DOCKER_IMAGE_NAME}}:${{ github.sha }}
+            docker login https://docker.pkg.github.com -u mrkuchkov -p ${{ secrets.K_GITHUB_TOKEN }}
             docker pull ${{env.IMAGE_REGISTRY_URL}}/${{ github.repository }}/${{env.DOCKER_IMAGE_NAME}}:${{ github.sha }}
 
       - name: Deploy web app container
