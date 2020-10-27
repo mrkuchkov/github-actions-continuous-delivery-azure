@@ -66,6 +66,7 @@ jobs:
           registry: ${{env.IMAGE_REGISTRY_URL}}
           username: ${{ github.actor }}
           password: ${{ secrets.K_GITHUB_TOKEN }}
+          logout: false
 
       - name: Deploy web app container
         uses: azure/webapps-deploy@v2
