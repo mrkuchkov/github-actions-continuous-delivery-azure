@@ -68,9 +68,7 @@ jobs:
           password: ${{ secrets.K_GITHUB_TOKEN }}
 
       - run: |
-            echo ${{env.IMAGE_REGISTRY_URL}}/${{ github.repository }}/${{env.DOCKER_IMAGE_NAME}}:${{ github.sha }}
             docker login https://docker.pkg.github.com -u mrkuchkov -p ${{ secrets.K_GITHUB_TOKEN }}
-            docker pull ${{env.IMAGE_REGISTRY_URL}}/${{ github.repository }}/${{env.DOCKER_IMAGE_NAME}}:${{ github.sha }}
 
       - name: Deploy web app container
         uses: azure/webapps-deploy@v2
